@@ -58,7 +58,7 @@ export default function TransactionModal({
         toggleCategory(category);
     }, [toggleCategory]);
 
-    const handleCloseAddTransaction = () => {
+    const handleCloseAddTransaction = useCallback(() => {
         if (setShowAddTransaction) {
             setShowAddTransaction(false);
         }
@@ -70,7 +70,7 @@ export default function TransactionModal({
         if (transactionForEdit && setTransactionId) {
             setTransactionId(null);
         }
-    }
+    }, [setShowAddTransaction, transactionForEdit, setTransactionId, toggleCategory]);
 
     const handleSubmitTransaction = useCallback(async () => {
         // Construct the transaction object
@@ -220,7 +220,7 @@ export default function TransactionModal({
                 </div>
             </div>
         )
-    }, [transaction, setAmount, setNote, setDate, isLoading, transactionForEdit]);
+    }, [transaction, setAmount, setNote, setDate, isLoading, transactionForEdit, handleSubmitTransaction, handleDeleteTransaction]);
 
     const renderAddTransactionModal = useMemo(() => (
         <div className='fixed bottom-0 left-0 right-0 top-0 bg-black/30 backdrop-blur-sm flex items-center justify-center'>
@@ -300,7 +300,7 @@ export default function TransactionModal({
                 </div>
             </div>
         </div>
-    ), [showAddTransaction, activeTab, transaction, renderTransactionForm]);
+    ), [showAddTransaction, activeTab, transaction, renderTransactionForm, handleCloseAddTransaction, handleTab, handleSelectCategory, transactionForEdit]);
 
 
     return (
