@@ -24,7 +24,8 @@ const BudgetTracker = () => {
     // }, []);
 
     return (
-        <div style={styles.budgetContainer}>
+       <>
+        {/* <div style={styles.budgetContainer}>
             <p style={styles.sectionTitle}>Budget Tracking</p>
             {loading ? (
                 <>
@@ -47,6 +48,7 @@ const BudgetTracker = () => {
                     </Card>
                 ))
             )}
-        </div>
+        </div> */}
+       </>
     );
 };

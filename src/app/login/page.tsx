@@ -102,7 +102,7 @@ export default function LogIn() {
                     </div>
 
                     <div className="flex items-center justify-center mt-6">
-                        <p className="text-sm text-gray-600">Don't have an account? </p>
+                        <p className="text-sm text-gray-600">Don&apos;t have an account? </p>
                         <Link href="/signup" className="text-takify-gold ml-1">
                             Sign Up
                         </Link>

@@ -149,6 +149,7 @@ export default function App() {
                       transactions.length > 0 ? (
                         transactions.map((transaction: Transaction, index) => (
                           <TransactionItem
+                          key={transaction.id}
                             item={transaction}
                             isLastItem={index === transactions.length - 1}
                             setTransactionId={setTransactionId}
@@ -182,6 +183,7 @@ export default function App() {
                       transactions.length > 0 ? (
                         transactions.map((transaction: Transaction, index) => (
                           <TransactionItem
+                            key={transaction.id}
                             item={transaction}
                             isLastItem={index === transactions.length - 1}
                             setTransactionId={setTransactionId}

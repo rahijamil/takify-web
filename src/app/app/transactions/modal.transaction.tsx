@@ -51,7 +51,7 @@ export default function TransactionModal({
 
             setACtiveTab(transactionForEdit.type);
         }
-    }, [transactionForEdit]);
+    }, [transactionForEdit, setAmount, setDate, setNote, setType, toggleCategory]);
 
 
     const handleSelectCategory = useCallback((category: Category) => {
@@ -125,7 +125,7 @@ export default function TransactionModal({
     const handleTab = useCallback((key: string) => {
         setACtiveTab(TransactionType[key as keyof typeof TransactionType]);
         setType(TransactionType[key as keyof typeof TransactionType]);
-    }, [setACtiveTab]);
+    }, [setACtiveTab, setType]);
 
     const handleDeleteTransaction = async () => {
         if (transactionForEdit?.id) {
@@ -220,7 +220,7 @@ export default function TransactionModal({
                 </div>
             </div>
         )
-    }, [transaction, setAmount, setNote])
+    }, [transaction, setAmount, setNote, setDate, isLoading, handleSubmitTransaction, handleDeleteTransaction, transactionForEdit]);
 
     const renderAddTransactionModal = useMemo(() => (
         <div className='fixed bottom-0 left-0 right-0 top-0 bg-black/30 backdrop-blur-sm flex items-center justify-center'>
@@ -249,7 +249,9 @@ export default function TransactionModal({
                             <ul className='flex shadow-sm'>
                                 {
                                     Object.keys(TransactionType).map((key) => (
-                                        <li className={`text-takify-dark_grey font-medium cursor-pointer transition flex-1 border-b-2 p-2 text-center ${activeTab == TransactionType[key as keyof typeof TransactionType] ? 'border-takify-deep_blue text-takify-deep_blue' : 'hover:text-takify-deep_blue border-transparent'}`} onClick={() => handleTab(key)}>
+                                        <li
+                                            key={key}
+                                            className={`text-takify-dark_grey font-medium cursor-pointer transition flex-1 border-b-2 p-2 text-center ${activeTab == TransactionType[key as keyof typeof TransactionType] ? 'border-takify-deep_blue text-takify-deep_blue' : 'hover:text-takify-deep_blue border-transparent'}`} onClick={() => handleTab(key)}>
                                             {key}
                                         </li>
                                     ))
@@ -265,7 +267,9 @@ export default function TransactionModal({
                                         : activeTab == TransactionType.Income
                                             ? INCOME_CATEGORY_GROUPS
                                             : DEBT_CATEGORY_GROUPS).map((group) => (
-                                                <li className='space-y-2'>
+                                                <li
+                                                    key={group.id}
+                                                    className='space-y-2'>
                                                     <div className='flex items-center gap-2'>
                                                         <IconWrapper icon={group.icon} className='text-xl text-takify-deep_blue' />
                                                         <span className='text-takify-dark_grey font-semibold cursor-pointer'>{group.name}</span>
@@ -296,7 +300,7 @@ export default function TransactionModal({
                 </div>
             </div>
         </div>
-    ), [showAddTransaction, activeTab, transaction]);
+    ), [showAddTransaction, activeTab, transaction, renderTransactionForm]);
 
 
     return (

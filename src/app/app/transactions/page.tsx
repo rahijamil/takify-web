@@ -84,6 +84,7 @@ export default function Transactions() {
                     transactions.filter((transaction: any) => transaction.type == TransactionType.Expense).length > 0 ? (
                       transactions.filter((transaction: any) => transaction.type == TransactionType.Expense).map((transaction, index) => (
                         <TransactionItem
+                          key={transaction.id}
                           item={transaction}
                           setTransactionId={setTransactionId}
                           transactionId={transactionId}
@@ -100,6 +101,7 @@ export default function Transactions() {
                     transactions.filter((transaction: any) => transaction.type == TransactionType.Income).length > 0 ? (
                       transactions.filter((transaction: any) => transaction.type == TransactionType.Income).map((transaction, index) => (
                         <TransactionItem
+                          key={transaction.id}
                           item={transaction}
                           setTransactionId={setTransactionId}
                           transactionId={transactionId}
@@ -116,6 +118,7 @@ export default function Transactions() {
                     transactions.filter((transaction: any) => transaction.type == TransactionType.Debt).length > 0 ? (
                       transactions.filter((transaction: any) => transaction.type == TransactionType.Debt).map((transaction, index) => (
                         <TransactionItem
+                          key={transaction.id}
                           item={transaction}
                           setTransactionId={setTransactionId}
                           transactionId={transactionId}

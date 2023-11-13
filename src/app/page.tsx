@@ -20,7 +20,7 @@ export default function Home() {
 
               <p className="text-lg font-bold">
                 Track your spending, manage your budget, and achieve your financial goals
-                with Takify's easy to use tools and insights.
+                with Takify&apos;s easy to use tools and insights.
               </p>
 
               <div className="flex items-center justify-center">
