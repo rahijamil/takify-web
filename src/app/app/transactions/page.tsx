@@ -57,7 +57,9 @@ export default function Transactions() {
           <ul className='flex gap-4'>
             {
               Object.keys(TransactionType).map((key) => (
-                <li className={`text-takify-dark_grey font-medium flex-1 text-center pb-4 border-b border-takify-light_grey`}>
+                <li
+                  key={key}
+                  className={`text-takify-dark_grey font-medium flex-1 text-center pb-4 border-b border-takify-light_grey`}>
                   {key}
                 </li>
               ))

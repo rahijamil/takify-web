@@ -72,7 +72,7 @@ export default function TransactionModal({
         }
     }
 
-    const handleSubmitTransaction = async () => {
+    const handleSubmitTransaction = useCallback(async () => {
         // Construct the transaction object
         const transactionData = {
             type: transaction.type,
@@ -120,14 +120,14 @@ export default function TransactionModal({
         finally {
             // setIsLoading(false);
         }
-    };
+    }, [transaction, transactionForEdit, handleCloseAddTransaction]);
 
     const handleTab = useCallback((key: string) => {
         setACtiveTab(TransactionType[key as keyof typeof TransactionType]);
         setType(TransactionType[key as keyof typeof TransactionType]);
     }, [setACtiveTab, setType]);
 
-    const handleDeleteTransaction = async () => {
+    const handleDeleteTransaction = useCallback(async () => {
         if (transactionForEdit?.id) {
             if (confirm("Are you sure you want to delete this transaction?")) {
                 setIsLoading(true);
@@ -144,7 +144,7 @@ export default function TransactionModal({
                 }
             }
         }
-    }
+    }, [transactionForEdit, handleCloseAddTransaction]);
 
     const renderTransactionForm = useMemo(() => {
         return (
@@ -220,7 +220,7 @@ export default function TransactionModal({
                 </div>
             </div>
         )
-    }, [transaction, setAmount, setNote, setDate, isLoading, handleSubmitTransaction, handleDeleteTransaction, transactionForEdit]);
+    }, [transaction, setAmount, setNote, setDate, isLoading, transactionForEdit]);
 
     const renderAddTransactionModal = useMemo(() => (
         <div className='fixed bottom-0 left-0 right-0 top-0 bg-black/30 backdrop-blur-sm flex items-center justify-center'>
