@@ -8,10 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        takify: {
+          deep_blue: '#0052cc',
+          sky_blue: '#00a2ff',
+          dark_grey: '#333333',
+          light_grey: '#e5e5e5',
+          light_silver: '#ecf0f1',
+          positive: '#4CAF50',
+          gold: '#ffd700',
+        },
       },
     },
   },

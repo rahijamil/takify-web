@@ -1,0 +1,31 @@
+.skeletonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom-width: 1px;
+    border-bottom-color: #e1e1e1;
+}
+
+.skeletonRectangle {
+    height: 20px;
+    width: 30%;
+    background-color: #e1e1e1;
+    border-radius: 4px;
+}
+
+.skeletonAnimation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
