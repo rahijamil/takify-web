@@ -4,17 +4,26 @@ import { MdAdd, MdRemove, MdShop } from 'react-icons/md';
 import { Transaction, TransactionType } from './transactionTypes';
 import IconWrapper from '@/components/IconWrapper';
 
-const TransactionItem = ({ item, isLastItem }: { item: Transaction, isLastItem?: boolean }) => {
-    const [transactionId, setTransactionId] = useState<string | null>(null);
+const TransactionItem = ({
+    item,
+    isLastItem,
+    setTransactionId,
+    transactionId
+}: {
+    item: Transaction,
+    isLastItem?: boolean,
+    setTransactionId: React.Dispatch<React.SetStateAction<string | null>>,
+    transactionId: string | null
+}) => {
 
     return (
         <>
             <div
                 onClick={() => setTransactionId(item.id)}
-                className={`cursor-pointer p-4 hover:bg-takify-gold/10 transition ${!isLastItem && "border-b border-takify-light_grey"}`}
+                className={`cursor-pointer p-4 hover:bg-takify-light_silver/25 transition ${!isLastItem && "border-b border-takify-light_grey"}`}
             >
                 <div className="flex items-center gap-4">
-                    <div className="bg-takify-gold/50 rounded-full w-10 h-10 flex items-center justify-center">
+                    <div className="bg-takify-light_silver rounded-full w-10 h-10 flex items-center justify-center">
                         <IconWrapper icon={item.category?.icon || MdShop} className='text-base text-takify-dark_grey' />
                     </div>
 

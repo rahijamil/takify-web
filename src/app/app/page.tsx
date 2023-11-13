@@ -6,6 +6,7 @@ import TransactionSkeleton from './transactions/TransactionSkeleton';
 import TransactionItem from './transactions/TransactionItem';
 import Link from 'next/link';
 import { Transaction } from './transactions/transactionTypes';
+import TransactionModal from './transactions/modal.transaction';
 
 const SummaryCard = ({ title, amount, icon }: {
   title: string;
@@ -24,8 +25,9 @@ const SummaryCard = ({ title, amount, icon }: {
 };
 
 export default function App() {
-  const [transactions, setTransactions] = useState<[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [transactionsLoading, setTransactionsLoading] = useState<boolean>(true);
+  const [transactionId, setTransactionId] = useState<string | null>(null);
 
   const [financialData, setFinancialData] = useState<{
     balance: number;
@@ -95,7 +97,7 @@ export default function App() {
   // }, [transactions]);
 
   return (
-    <div>
+    <>
       <div className="wrapper space-y-4 md:space-y-12">
         <h1 className='text-3xl font-bold hidden md:block'>Dashboard</h1>
 
@@ -146,7 +148,12 @@ export default function App() {
                     ) :
                       transactions.length > 0 ? (
                         transactions.map((transaction: Transaction, index) => (
-                          <TransactionItem item={transaction} isLastItem={index === transactions.length - 1} />
+                          <TransactionItem
+                            item={transaction}
+                            isLastItem={index === transactions.length - 1}
+                            setTransactionId={setTransactionId}
+                            transactionId={transactionId}
+                          />
                         ))
                       ) : (
                         <p>No transactions found.</p>
@@ -174,7 +181,12 @@ export default function App() {
                     ) :
                       transactions.length > 0 ? (
                         transactions.map((transaction: Transaction, index) => (
-                          <TransactionItem item={transaction} isLastItem={index === transactions.length - 1} />
+                          <TransactionItem
+                            item={transaction}
+                            isLastItem={index === transactions.length - 1}
+                            setTransactionId={setTransactionId}
+                            transactionId={transactionId}
+                          />
                         ))
                       ) : (
                         <p>No transactions found.</p>
@@ -193,14 +205,24 @@ export default function App() {
 
           <div className='space-y-4 md:space-y-12'>
             <div className='bg-takify-gold/50 rounded-lg p-4 aspect-square shadow-md'>
-              This is a Fucking Card
+              This is a Card
             </div>
             <div className='bg-takify-gold/50 rounded-lg p-4 aspect-square shadow-md'>
-              This is another Fucking Card
+              This is another Card
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+
+      {
+        transactionId && (
+          <TransactionModal
+            transactionForEdit={transactions.find((transaction) => transaction.id == transactionId)}
+            setTransactionId={setTransactionId}
+          />
+        )
+      }
+    </>
   )
 }

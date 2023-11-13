@@ -6,7 +6,7 @@ import React from 'react'
 export default function HomeFooter() {
   return (
     <footer className='border-t border-takify-light_silver'>
-      <div className="wrapper py-12 flex items-center justify-between gap-8">
+      <div className="w-11/12 mx-auto py-12 flex items-center justify-between gap-8">
         <div>
           <div className='flex'>
             <Logo href='/' />
